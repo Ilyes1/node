@@ -4,13 +4,12 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     async function getUniv() {
-        await axios.get('http://universities.hipolabs.com/search')
+        await axios.get('http://universities.hipolabs.com/search?country=united states')
         .then(data => res.render('index', {'items': data.data}))
     }
     getUniv() 
